@@ -1,0 +1,7 @@
+<button type="{{btn.type|default('button')}}" 
+class="
+btn
+{% if btn.mod %}{{btn.mod}}{% endif %}
+{% if btn.theme %}btn--{{btn.theme}}{% endif %}
+"
+>{{btn.text}}</button>

@@ -1,0 +1,45 @@
+.page-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2.6rem 3.3rem 2.6rem 3rem;
+  border-bottom: 1px solid $grey;
+
+  &__logo {
+    display: block;
+    height: 3.2rem;
+    color: $black;
+    transition: color .3s;
+
+    @include hover {
+      color: $blue;
+    }
+  }
+
+  &__logo-icon {
+    font-size: 8.9rem;
+    height: 3.2rem;
+  }
+
+  &__btn-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -1.3rem;
+    align-items: center;
+  }
+
+  &__btn-li {
+    padding: 1.3rem;
+  }
+
+  &__search-btn {
+    font-size: 2.4rem;
+    line-height: 0;
+    transition: color .3s;
+
+    @include hover {
+      color: $blue;
+    }
+  }
+}

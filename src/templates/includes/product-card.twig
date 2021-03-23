@@ -1,0 +1,22 @@
+<article class="product-card js-product-card">
+	<div class="product-card__img-col">
+		{% include 'picture.twig' with {
+      picture: productCard.picture
+    } %}
+	</div>
+  <div class="product-card__content-col">
+    <div class="product-card__title">{{productCard.title}}</div>
+    <div class="product-card__bottom-col">
+      {% include 'counter.twig' with {
+        counter: productCard.counter
+      } %}
+      <div class="product-card__price">$ <span class="js-card-price">{{productCard.price}}</span></div>
+    </div>
+    <button type="button" class="product-card__btn-cancel js-btn-cancel">
+      {% include 'svg-temp.twig' with {
+        iconName: 'close',
+        mod: 'product-card__btn-cancel-icon'
+      } %}
+    </button>
+  </div>
+</article>

@@ -1,0 +1,112 @@
+// SCSS variables are information about icon's compiled state, stored under its original file name
+//
+// .icon-home {
+//   width: $icon-home-width;
+// }
+//
+// The large array-like variables contain all information about a single icon
+// $icon-home: x y offset_x offset_y width height total_width total_height image_path;
+//
+// At the bottom of this section, we provide information about the spritesheet itself
+// $spritesheet: width height image $spritesheet-sprites;
+$icon-telegram-name: 'icon-telegram';
+$icon-telegram-x: 19px;
+$icon-telegram-y: 0px;
+$icon-telegram-offset-x: -19px;
+$icon-telegram-offset-y: 0px;
+$icon-telegram-width: 19px;
+$icon-telegram-height: 16px;
+$icon-telegram-total-width: 38px;
+$icon-telegram-total-height: 35px;
+$icon-telegram-image: '../img/png_sprite.png';
+$icon-telegram: (19px, 0px, -19px, 0px, 19px, 16px, 38px, 35px, '../img/png_sprite.png', 'icon-telegram', );
+$icon-viber-name: 'icon-viber';
+$icon-viber-x: 0px;
+$icon-viber-y: 19px;
+$icon-viber-offset-x: 0px;
+$icon-viber-offset-y: -19px;
+$icon-viber-width: 16px;
+$icon-viber-height: 16px;
+$icon-viber-total-width: 38px;
+$icon-viber-total-height: 35px;
+$icon-viber-image: '../img/png_sprite.png';
+$icon-viber: (0px, 19px, 0px, -19px, 16px, 16px, 38px, 35px, '../img/png_sprite.png', 'icon-viber', );
+$icon-whatsapp-name: 'icon-whatsapp';
+$icon-whatsapp-x: 0px;
+$icon-whatsapp-y: 0px;
+$icon-whatsapp-offset-x: 0px;
+$icon-whatsapp-offset-y: 0px;
+$icon-whatsapp-width: 19px;
+$icon-whatsapp-height: 19px;
+$icon-whatsapp-total-width: 38px;
+$icon-whatsapp-total-height: 35px;
+$icon-whatsapp-image: '../img/png_sprite.png';
+$icon-whatsapp: (0px, 0px, 0px, 0px, 19px, 19px, 38px, 35px, '../img/png_sprite.png', 'icon-whatsapp', );
+$spritesheet-width: 38px;
+$spritesheet-height: 35px;
+$spritesheet-image: '../img/png_sprite.png';
+$spritesheet-sprites: ($icon-telegram, $icon-viber, $icon-whatsapp, );
+$spritesheet: (38px, 35px, '../img/png_sprite.png', $spritesheet-sprites, );
+
+// The provided mixins are intended to be used with the array-like variables
+//
+// .icon-home {
+//   @include sprite-width($icon-home);
+// }
+//
+// .icon-email {
+//   @include sprite($icon-email);
+// }
+//
+// Example usage in HTML:
+//
+// `display: block` sprite:
+// <div class="icon-home"></div>
+//
+// To change `display` (e.g. `display: inline-block;`), we suggest using a common CSS class:
+//
+// // CSS
+// .icon {
+//   display: inline-block;
+// }
+//
+// // HTML
+// <i class="icon icon-home"></i>
+@mixin sprite-width($sprite) {
+  width: nth($sprite, 5);
+}
+
+@mixin sprite-height($sprite) {
+  height: nth($sprite, 6);
+}
+
+@mixin sprite-position($sprite) {
+  $sprite-offset-x: nth($sprite, 3);
+  $sprite-offset-y: nth($sprite, 4);
+  background-position: $sprite-offset-x  $sprite-offset-y;
+}
+
+@mixin sprite-image($sprite) {
+  $sprite-image: nth($sprite, 9);
+  background-image: url(#{$sprite-image});
+}
+
+@mixin sprite($sprite) {
+  @include sprite-image($sprite);
+  @include sprite-position($sprite);
+  @include sprite-width($sprite);
+  @include sprite-height($sprite);
+}
+
+// The `sprites` mixin generates identical output to the CSS template
+//   but can be overridden inside of SCSS
+//
+// @include sprites($spritesheet-sprites);
+@mixin sprites($sprites) {
+  @each $sprite in $sprites {
+    $sprite-name: nth($sprite, 10);
+    .#{$sprite-name} {
+      @include sprite($sprite);
+    }
+  }
+}

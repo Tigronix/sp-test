@@ -1,0 +1,116 @@
+.steps {
+  margin-bottom: 6rem;
+  $self: &;
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__li {
+    flex: 1;
+    position: relative;
+
+    &:last-child {
+      flex: 0
+    }
+  }
+
+  &__line {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 1.1rem;
+    height: 1px;
+    background: #d5d5d5;
+
+    #{$self}__li.prev & {
+      background: $blue;
+    }
+    
+    #{$self}__li.active & {
+      &:before {
+        display: block;
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 2rem;
+        height: 1px;
+        background: $blue;
+      }
+    }
+  }
+
+  &__item {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 5;
+
+    #{$self}__li:first-child & {
+      &:before {
+        display: block;
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0.2rem;
+        width: 2rem;
+        height: 1rem;
+        background: $white;
+      }
+    }
+
+    #{$self}__li:last-child & {
+      &:before {
+        display: block;
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 0.2rem;
+        width: 2rem;
+        height: 1rem;
+        background: $white;
+      }
+    }
+  }
+
+  &__circle {
+    width: 1.7rem;
+    height: 1.7rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #d5d5d5;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #d5d5d5;
+    border-radius: 50%;
+    margin-bottom: .9rem;
+    background: $white;
+    position: relative;
+    z-index: 5;
+    transition: color .3s, border-color .3s, background .3s;
+
+    #{$self}__li.prev & {
+      background: $blue;
+      border-color: $blue;
+      color: $white;
+    }
+
+    #{$self}__li.active & {
+      border-color: $blue;
+      color: $black;
+    }
+  }
+
+  &__name {
+    font-size: 1.4rem;
+    line-height: 1.6rem;
+    color: $black;
+    position: relative;
+    z-index: 5;
+  }
+}

@@ -1,0 +1,13 @@
+<div class="steps">
+	<ul class="steps__list">
+		{% for item in steps.stepList %}
+			<li class="steps__li {{item.mod}}">
+				<div class="steps__line"></div>
+				<div class="steps__item">
+					<div class="steps__circle">{{item.countNumber}}</div>
+					<div class="steps__name">{{item.name}}</div>
+				</div>
+			</li>
+		{% endfor %}
+	</ul>
+</div>

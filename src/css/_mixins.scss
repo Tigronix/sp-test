@@ -1,0 +1,66 @@
+@mixin hover {
+  @include fromDesktop {
+    &:hover {
+      @content;
+    }
+  }
+}
+
+// fonts
+
+@mixin roboto {
+  font-family: "Roboto";
+}
+
+// brakepoints
+@mixin desktopHd {
+  @media screen and (min-width: 1640px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media screen and (max-width: 1639px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media screen and (max-width: 1199px) {
+    @content;
+  }
+}
+
+@mixin fromDesktop {
+  @media screen and (min-width: 1200px) {
+    @content;
+  }
+}
+
+
+// other
+@mixin hide {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+@mixin show {
+  position: static;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@mixin imgScale {
+  transition: transform 0.3s;
+
+  @include hover {
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+}
+
+@mixin safariOverflowFix {
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+}

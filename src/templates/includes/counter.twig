@@ -1,0 +1,15 @@
+<div class="counter js-counter">
+	<button type="button" class="counter__btn counter__btn--minus js-minus">
+    {% include 'svg-temp.twig' with {
+      iconName: 'circle-minus',
+      mod: 'counter__icon-minus'
+    } %}
+  </button>
+  <div class="counter__number js-number">{{counter.number}}</div>
+	<button type="button" class="counter__btn counter__btn--plus js-plus">
+    {% include 'svg-temp.twig' with {
+      iconName: 'circle-plus',
+      mod: 'counter__icon-plus'
+    } %}
+  </button>
+</div>

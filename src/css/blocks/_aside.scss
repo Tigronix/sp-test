@@ -1,0 +1,59 @@
+.aside {
+  $self: &;
+  color: $black;
+
+  &__header-text {
+    margin-bottom: 3rem;
+  }
+
+  &__product-list {
+    margin: -2rem;
+  }
+
+  &__product-li {
+    padding: 2rem;
+  }
+
+  &__promo-col {
+    border: 1px solid $grey;
+    border-width: 1px 0;
+    margin: 0 -4rem;
+    padding: 4rem;
+  }
+
+  &__total-col {
+    margin-top: 4rem;
+  }
+
+  &__total-list {
+    margin: -.9rem;
+  }
+
+  &__total-li {
+    padding: .9rem;
+  }
+
+  &__total-item {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    font-size: 1.4rem;
+    line-height: 1.6rem;
+    color: $black;
+
+    #{$self}__total-li:last-child & {
+      font-size: 1.8rem;
+      line-height: 2.1rem;
+      font-weight: bold;
+    }
+  }
+
+  &__total-key {
+    flex: 1;
+    padding-right: 4rem;
+  }
+
+  &__total-price {
+    text-align: right;
+  }
+}

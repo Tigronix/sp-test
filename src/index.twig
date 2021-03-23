@@ -1,0 +1,112 @@
+{% extends 'templates/base.twig' %}
+
+{% block title %}{% endblock %}
+{% block page %}
+	{% include 'templates/includes/sections/cart.twig' with {
+    cart: {
+      steps: {
+        stepList: [
+          {
+            countNumber: '1',
+            name: 'Account',
+            mod: 'prev'
+          },
+          {
+            countNumber: '2',
+            name: 'Shipping',
+            mod: 'prev'
+          },
+          {
+            countNumber: '3',
+            name: 'Billing',
+            mod: 'active'
+          },
+          {
+            countNumber: '4',
+            name: 'Review'
+          },
+        ],
+      },
+      billForm: {
+        headerText: {
+          text: 'Billing Information',
+          section: 'bill-form'
+        },
+        payList: [
+          {
+            checked: true,
+            text: 'Pay with Credit Card'
+          },
+          {
+            iconName: 'paypal'
+          }
+        ],
+      },
+      aside: {
+        headerText: {
+          text: 'My basket',
+          section: 'aside'
+        },
+        productList: [
+          {
+            productCard: {
+              picture: {
+                imgSrc: 'assets/img/aside0',
+                mod: 'product-card__picture',
+                cover: true
+              },
+              title: 'Amet minim mollit non deserunt ullamco est sit',
+              counter: {
+                number: '1',
+              },
+              price: '525'
+            }
+          },
+          {
+            productCard: {
+              picture: {
+                imgSrc: 'assets/img/aside1',
+                mod: 'product-card__picture',
+                cover: true
+              },
+              title: 'Amet minim mollit non',
+              counter: {
+                number: '5',
+              },
+              price: '2625'
+            }
+          },
+        ],
+        promo: {
+          headerText: {
+            text: 'Promo code',
+            section: 'promo'
+          },
+          placeholder: 'Placeholder Text',
+        },
+        totalList: [
+          {
+            key: 'Subtotal',
+            value: '1 050',
+            mod: 'js-subtotal-price'
+          },
+          {
+            key: 'Tax',
+            value: '100',
+            mod: 'js-tax-price'
+          },
+          {
+            key: 'Shipping',
+            value: '150',
+            mod: 'js-shipping-price'
+          },
+          {
+            key: 'Total',
+            value: '1 300',
+            mod: 'js-total-price'
+          },
+        ]
+      }
+    }
+  } %}
+{% endblock %}

@@ -1,0 +1,24 @@
+.counter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  color: $black;
+
+  &__btn {
+    font-size: 2rem;
+    transition: color .3s;
+    line-height: 0;
+
+    @include hover {
+      color: $blue;
+    }
+  }
+
+  &__number {
+    width: 4rem;
+    padding: 0 .2rem;
+    text-align: center;
+    font-size: 1.4rem;
+    line-height: 1.6rem;
+  }
+}

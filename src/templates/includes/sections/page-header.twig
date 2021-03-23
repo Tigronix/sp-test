@@ -1,0 +1,25 @@
+<header class="page-header">
+	<a href="#" class="page-header__logo">
+    {% include '../svg-temp.twig' with {
+      iconName: 'logo',
+      mod: 'page-header__logo-icon'
+    } %}
+  </a>
+	{% include '../nav.twig' with {
+    nav: pageHeader.nav
+  } %}
+	<div class="page-header__btn-col">
+		<ul class="page-header__btn-list">
+			<li class="page-header__btn-li">
+				<button type="button" class="page-header__search-btn">
+          {% include '../svg-temp.twig' with {
+            iconName: 'search'
+          } %}
+        </button>
+			</li>
+			<li class="page-header__btn-li">
+        {% include '../backet.twig' %}
+			</li>
+		</ul>
+	</div>
+</header>

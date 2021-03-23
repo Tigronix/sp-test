@@ -1,0 +1,13 @@
+.field {
+  background: #ededf1;
+  border-radius: 0.3rem;
+  font-size: 1.4rem;
+  line-height: 2.4rem;
+  color: #8e90a6;
+  padding: 0.8rem 1rem;
+  width: 100%;
+
+  &::placeholder {
+    color: #8e90a6;
+  }
+}

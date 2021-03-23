@@ -1,0 +1,93 @@
+<form action="" class="bill-form">
+	<div class="bill-form__head">
+		{% include 'header-text.twig' with {
+			headerText: billForm.headerText
+		} %}
+		<ul class="bill-form__pay-list">
+			{% for item in billForm.payList %}
+				<li class="bill-form__pay-li">
+					<label class="bill-form__pay-item">
+						<input type="radio" name="bill-form__pay" class="bill-form__radio" {% if item.checked %} checked {% endif %}>
+						<div class="bill-form__pay-icon"></div>
+						{% if item.text %}
+							<div class="bill-form__pay-label">{{item.text}}</div>
+						{% else %}
+							{% include 'svg-temp.twig' with {
+              iconName: item.iconName,
+              mod: 'bill-form__pay-img'
+            } %}
+						{% endif %}
+					</label>
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
+	<div class="bill-form__card">
+		<label class="bill-form__field-label">
+			<div class="bill-form__field-title">Name on card</div>
+			<input type="text" placeholder="Placeholder Text" pattern="^[a-zA-Z\s]+$" title="Enter your name" required class="field bill-form__field">
+		</label>
+		<label class="bill-form__field-label">
+			<div class="bill-form__field-title">Card number</div>
+			<ul class="bill-form__card-list">
+				<li class="bill-form__card-li">
+					<input type="text" class="field bill-form__field js-card-4" required title="Enter card number">
+				</li>
+				<li class="bill-form__card-li">
+					<input type="text" class="field bill-form__field js-card-4" required title="Enter card number">
+				</li>
+				<li class="bill-form__card-li">
+					<input type="text" class="field bill-form__field js-card-4" required title="Enter card number">
+				</li>
+				<li class="bill-form__card-li">
+					<input type="text" class="field bill-form__field js-card-4" required title="Enter card number">
+				</li>
+			</ul>
+		</label>
+		<ul class="bill-form__card-list">
+			<li class="bill-form__card-li">
+				<label class="bill-form__field-label bill-form__field-label--no-mg">
+					<div class="bill-form__field-title">Expire date</div>
+					<input type="text" title="Enter your name" required class="field bill-form__field js-date">
+				</label>
+			</li>
+			<li class="bill-form__card-li">
+				<div class="bill-form__field-label bill-form__field-label--no-mg">
+					<div class="bill-form__field-title">
+						<label for="cvv" class="bill-form__field-title-text">CVV code</label>
+						<button type="button" class="bill-form__tooltip">?</button>
+					</div>
+					<input id="cvv" type="text" title="Enter CVV code" required class="field bill-form__field js-card-3">
+				</div>
+			</li>
+		</ul>
+	</div>
+	<div class="bill-form__bottom">
+    {% include 'checkbox.twig' with {
+      checkbox: {
+        checked: true,
+        text: 'Save information of this credit card',
+      }
+    } %}
+    {% include 'checkbox.twig' with {
+      checkbox: {
+        text: 'I accept the <a href="#">terms and conditions</a> and the <a href="#">Privacy Policies</a>'
+      }
+    } %}
+    <div class="bill-form__btns">
+      {% include 'btn.twig' with {
+        btn: {
+          text: 'Back',
+          mod: 'bill-form__btn-back'
+        }
+      } %}
+      {% include 'btn.twig' with {
+        btn: {
+          text: 'Check Out',
+          mod: 'bill-form__btn-next',
+          theme: 'blue',
+        }
+      } %}
+    </div>
+  </div>
+</form>

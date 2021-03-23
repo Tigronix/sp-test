@@ -1,0 +1,31 @@
+<div class="aside">
+	{% include 'header-text.twig' with {
+		headerText: aside.headerText
+	} %}
+	<ul class="aside__product-list">
+		{% for item in aside.productList %}
+			<li class="aside__product-li">
+				{% include 'product-card.twig' with {
+          productCard: item.productCard
+        } %}
+			</li>
+		{% endfor %}
+	</ul>
+	<div class="aside__promo-col">
+		{% include 'promo.twig' with {
+			promo: aside.promo
+		} %}
+	</div>
+	<div class="aside__total-col">
+		<ul class="aside__total-list">
+			{% for item in aside.totalList %}
+				<li class="aside__total-li">
+					<div class="aside__total-item">
+						<div class="aside__total-key">{{item.key}}</div>
+						<div class="aside__total-price">$ <span class="{{item.mod}}">{{item.value}}</span></div>
+					</div>
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
+</div>

@@ -1,0 +1,9 @@
+<nav class="nav {{ nav.mod}}">
+	<ul class="nav__list">
+    {% for item in nav.list %}
+      <li class="nav__li">
+        <a href="#" class="nav__link">{{item.text}}</a>
+      </li>
+    {% endfor %}
+	</ul>
+</nav>

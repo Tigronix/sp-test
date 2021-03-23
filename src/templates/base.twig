@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="format-detection" content="telephone=no">
+		<title>
+			{% block title %}{% endblock %}
+		</title>
+		<link rel="stylesheet" href="./assets/css/main.css">
+		<!-- fonts preload -->
+		<!-- fonts preload end -->
+		<meta name="msapplication-TileColor" content="#ffffff"> <meta name="theme-color" content="#ffffff">
+	</head>
+	<body>
+		<div class="site-wrapper {% block siteWrapperMod %}{% endblock %}">
+			{% include 'includes/sections/page-header.twig' with {
+				pageHeader: {
+					nav: {
+						mod: 'page-header__nav',
+						list: [
+							{
+								text: 'Women’s'
+							},
+							{
+								text: 'Men’s'
+							},
+							{
+								text: 'Home'
+							},
+							{
+								text: 'Travel'
+							},
+							{
+								text: 'Beauty'
+							},
+							{
+								text: 'Sale'
+							},
+						]
+					}
+				}
+			} %}
+			<main class="site-content"> {% block page %}{% endblock %}
+				</main>
+				<!-- popups & Select dropdown -->
+			</div>
+			<script defer src="./assets/js/vendor.js"></script>
+			<script defer src="./assets/js/main.js"></script>
+			<div style="display: none;">
+				{% include 'includes/icons.svg' %}
+			</div>
+		</body>
+	</html>

@@ -1,0 +1,16 @@
+<div class="promo">
+  {% include 'header-text.twig' with {
+    headerText: promo.headerText
+  } %}
+  <form action="" class="promo__form">
+    <input type="text" class="field promo__field" placeholder="Placeholder Text">
+    {% include 'btn.twig' with {
+      btn: {
+        text: 'Apply',
+        theme: 'blue',
+        type: 'submit',
+        mod: 'promo__submit'
+      }
+    } %}
+  </form>
+</div>

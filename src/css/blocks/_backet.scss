@@ -1,0 +1,26 @@
+.backet {
+  position: relative;
+  font-size: 2.4rem;
+  line-height: 0;
+  color: $black;
+  transition: color 0.3s;
+
+  @include hover {
+    color: $blue;
+  }
+
+  &__counter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 .37rem;
+    height: 1.3rem;
+    background: $blue;
+    font-size: 1rem;
+    color: $white;
+    border-radius: 50%;
+    position: absolute;
+    left: calc(100% - .8rem);
+    top: -.3rem;
+  }
+}

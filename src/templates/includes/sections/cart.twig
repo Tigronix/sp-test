@@ -1,0 +1,15 @@
+<section class="cart">
+  <div class="cart__main">
+    {% include '../steps.twig' with {
+      steps: cart.steps
+    } %}
+    {% include '../bill-form.twig' with {
+      billForm: cart.billForm
+    } %}
+  </div>
+  <div class="cart__aside">
+    {% include '../aside.twig' with {
+      aside: cart.aside
+    } %}
+  </div>
+</section>

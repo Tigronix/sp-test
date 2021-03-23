@@ -1,0 +1,16 @@
+@import 'variables';
+@import 'mixins';
+@import 'animation';
+@import 'fonts';
+
+// plugins
+@import 'swiper/swiper-bundle.css';
+
+// base
+@import 'base';
+
+// blocks
+@import 'blocks/*';
+
+// sections
+@import 'sections/*';

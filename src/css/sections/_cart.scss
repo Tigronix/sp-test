@@ -1,0 +1,18 @@
+.cart {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  flex: 1;
+
+  &__main {
+    flex: 1;
+    padding: 6rem 6.6rem 0 6.3rem;
+    padding-bottom: 19rem;
+  }
+
+  &__aside {
+    width: 41rem;
+    border-left: 1px solid $grey;
+    padding: 4rem;
+  }
+}

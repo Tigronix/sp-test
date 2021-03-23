@@ -1,0 +1,23 @@
+.nav {
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: -1.6rem;
+  }
+
+  &__li {
+    padding: 1.6rem
+  }
+
+  &__link {
+    font-size: 1.4rem;
+    line-height: 1.6rem;
+    color: $black;
+    transition: color .3s;
+
+    @include hover {
+      color: $blue;
+    }
+  }
+}
