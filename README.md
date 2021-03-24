@@ -1,3 +1,5 @@
+## Ссылка на результат: https://tigronix.github.io/sp-test/build/
+
 В сборщике используются:
 
 - [Gulp4](https://gulpjs.com/)
