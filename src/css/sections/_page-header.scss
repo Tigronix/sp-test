@@ -3,14 +3,18 @@
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  padding: 2.6rem 3.3rem 2.6rem 3rem;
+  padding: 2.6rem 3.3rem 2.2rem 3rem;
   border-bottom: 1px solid $grey;
+
+  @include tablet {
+    padding: 2.6rem 3rem 2.2rem 3rem;
+  }
 
   &__logo {
     display: block;
     height: 3.2rem;
     color: $black;
-    transition: color .3s;
+    transition: color 0.3s;
 
     @include hover {
       color: $blue;
@@ -27,19 +31,51 @@
     flex-wrap: wrap;
     margin: -1.3rem;
     align-items: center;
+  
+    @include tablet {
+      margin: -1.6rem;
+    }
   }
 
   &__btn-li {
     padding: 1.3rem;
+
+    @include tablet {
+      padding: 1.6rem;
+    }
+
+    &--menu {
+      display: none;
+
+      @include tablet {
+        display: block;
+      }
+    }
   }
 
   &__search-btn {
     font-size: 2.4rem;
     line-height: 0;
-    transition: color .3s;
+    transition: color 0.3s;
 
     @include hover {
       color: $blue;
+    }
+  }
+
+  &__nav {
+    @include tablet {
+      display: none;
+    }
+  }
+
+  &__menu-btn {
+    line-height: 0;
+    color: $black;
+
+    .icon {
+      width: 2.9rem;
+      height: 2.2rem;
     }
   }
 }

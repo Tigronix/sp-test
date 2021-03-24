@@ -6,31 +6,37 @@
     margin-bottom: 3rem;
   }
 
-  &__product-list {
-    margin: -2rem;
-  }
-
   &__product-li {
-    padding: 2rem;
+    padding-top: 4rem;
+
+    &:first-child {
+      padding-top: 0;
+    }
   }
 
   &__promo-col {
     border: 1px solid $grey;
     border-width: 1px 0;
     margin: 0 -4rem;
-    padding: 4rem;
+    margin-top: 3.9rem;
+    padding: 4rem 4rem 3.9rem 4rem;
   }
 
   &__total-col {
-    margin-top: 4rem;
+    margin-top: 5rem;
   }
 
   &__total-list {
     margin: -.9rem;
+    max-width: 33.2rem;
   }
 
   &__total-li {
     padding: .9rem;
+    
+    &:last-child {
+      padding-top: .6rem;
+    }
   }
 
   &__total-item {

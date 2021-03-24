@@ -20,6 +20,13 @@
 			<li class="page-header__btn-li">
         {% include '../backet.twig' %}
 			</li>
+			<li class="page-header__btn-li page-header__btn-li--menu">
+        <button class="page-header__menu-btn js-open-menu">
+          {% include '../svg-temp.twig' with {
+            iconName: 'burger'
+          } %}
+        </button>
+			</li>
 		</ul>
 	</div>
 </header>

@@ -21,10 +21,10 @@ const calc = () => {
       cart.taxGetPrice();
       cart.shippingGetPrice();
       cart.totalGetPrice();
-
-      cart.dataArrInit = [];
+      
       const productCardNodes = document.querySelectorAll('.js-product-card');
-      productCardNodes.forEach((productCardNode, arrayIndex) => {
+      productCardNodes.forEach((productCardNode) => {
+        const itemId = productCardNode.getAttribute('data-id');
         const cardObj = {};
         const cardObjInit = {};
         const number = parseInt(productCardNode.querySelector('.js-number').innerText);
@@ -32,10 +32,12 @@ const calc = () => {
         const priceNumber = parseInt(priceNode.innerText);
         cardObj.number = number;
         cardObj.priceNumber = priceNumber;
+        cardObj.id = itemId;
         cart.dataArr.push(cardObj);
 
         cardObjInit.number = number;
         cardObjInit.priceNumber = priceNumber;
+        cardObjInit.id = itemId;
         cart.dataArrInit.push(cardObjInit);
 
         // события на каунтере
@@ -45,59 +47,63 @@ const calc = () => {
         const numberNode = counterNode.querySelector('.js-number');
 
         btnPlus.addEventListener('click', () => {
-          cart.countPlus(numberNode, arrayIndex, priceNode);
+          cart.countPlus(numberNode, priceNode);
         });
 
         btnMinus.addEventListener('click', () => {
-          cart.countMinus(numberNode, arrayIndex, priceNode);
+          cart.countMinus(numberNode, priceNode);
         });
 
         // события на remove кнопке
         const btnRemove = productCardNode.querySelector('.js-btn-cancel');
         btnRemove.addEventListener('click', () => {
-          cart.removeItem(productCardNode, arrayIndex);
+          cart.removeItem(productCardNode);
         });
       });
     },
-    countPlus: (numberNode, arrayIndex, priceNode) => {
-      cart.dataArr[arrayIndex].number++;
-      numberNode.innerText = cart.dataArr[arrayIndex].number;
-      cart.calc(arrayIndex, priceNode);
+    countPlus: (numberNode, priceNode) => {
+      const itemIdNode = numberNode.closest('.js-product-card').getAttribute('data-id');
+      const itemId = cart.dataArr.filter(x => x.id === itemIdNode);
+      itemId[0].number++;
+      numberNode.innerText = itemId[0].number;
+      cart.calc(itemId, priceNode, itemIdNode);
     },
-    countMinus: (numberNode, arrayIndex, priceNode) => {
-      cart.dataArr[arrayIndex].number--;
-      const isNegativeNumber = cart.dataArr[arrayIndex].number < 1;
+    countMinus: (numberNode, priceNode) => {
+      const itemIdNode = numberNode.closest('.js-product-card').getAttribute('data-id');
+      const itemId = cart.dataArr.filter(x => x.id === itemIdNode);
+      itemId[0].number--;
+      const isNegativeNumber = itemId[0].number < 1;
 
       if (isNegativeNumber) {
-        cart.dataArr[arrayIndex].number = 1;
+        itemId[0].number = 1;
       }
 
-      numberNode.innerText = cart.dataArr[arrayIndex].number;
-      cart.calc(arrayIndex, priceNode);
+      numberNode.innerText = itemId[0].number;
+      cart.calc(itemId, priceNode, itemIdNode);
     },
-    removeItem: (itemNode, arrayIndex) => {
-      itemNode.remove();
-      cart.dataArr.splice(arrayIndex, 1);
-      cart.calc(arrayIndex);
-
-      console.log(cart.dataArr);
+    removeItem: (itemNode) => {
+      const itemIdNode = itemNode.getAttribute('data-id');
+      const itemRemoveIndex = cart.dataArr.findIndex(x => x.id === itemIdNode);
+      cart.dataArr.splice(itemRemoveIndex, 1);
+      itemNode.parentElement.remove();
+      cart.calc(itemIdNode);
     },
-    calc: (arrayIndex, priceNode) => {
+    calc: (itemId, priceNode, itemIdNode) => {
       if (priceNode) {
         // обновить цену одного товара
-        const getSingleItemPrice = (arrayIndex) => {
-          const item = cart.dataArrInit[arrayIndex];
-          const quantity = item.number;
-          const priceNumber = item.priceNumber;
+        const getSingleItemPrice = (itemIdNode) => {
+          const itemIdInit = cart.dataArrInit.filter(x => x.id === itemIdNode);
+          const quantity = itemIdInit[0].number;
+          const priceNumber = itemIdInit[0].priceNumber;
           const singleItemPrice = priceNumber / quantity;
 
           return singleItemPrice;
         };
 
-        const singleItemPrice = getSingleItemPrice(arrayIndex);
-        const itemSumm = singleItemPrice * cart.dataArr[arrayIndex].number;
-        priceNode.innerText = itemSumm;
-        cart.dataArr[arrayIndex].priceNumber = itemSumm;
+        const singleItemPrice = getSingleItemPrice(itemIdNode);
+        const itemSumm = singleItemPrice * itemId[0].number;
+        itemId[0].priceNumber = itemSumm;
+        priceNode.innerText = itemId[0].priceNumber;
       }
 
       // обновить итоговую стоимость продуктов
@@ -107,13 +113,19 @@ const calc = () => {
         const singleItemPrice = item.priceNumber;
         productPrices.push(singleItemPrice);
       });
+      const isArrayEmpty = productPrices.length === 0;
 
-      cart.productsSum = productPrices.reduce((total, amount) => total + amount);
-      cart.subTotalPriceNode.innerText = cart.productsSum;
+      if (isArrayEmpty) {
+        cart.subTotalPriceNode.innerText = '0';
+        cart.totalPriceNode.innerText = cart.taxPrice + cart.shippingPrice;
+      } else {
+        cart.productsSum = productPrices.reduce((total, amount) => total + amount);
+        cart.subTotalPriceNode.innerText = cart.productsSum;
 
-      // обновить общую стоимость товаров с учетём налога и доставки
-      cart.orderSumm = cart.productsSum + cart.taxPrice + cart.shippingPrice;
-      cart.totalPriceNode.innerText = cart.orderSumm;
+        // обновить общую стоимость товаров с учетём налога и доставки
+        cart.orderSumm = cart.productsSum + cart.taxPrice + cart.shippingPrice;
+        cart.totalPriceNode.innerText = cart.orderSumm;
+      }
     }
   };
 
